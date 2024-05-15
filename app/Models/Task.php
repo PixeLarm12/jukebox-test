@@ -17,6 +17,6 @@ class Task extends Model
 
     public function scopeGetAllTasks()
     {
-        return self::where('user_id', Auth::user()->id);
+        return self::where('user_id', Auth::user()->id)->get();
     }
 }
