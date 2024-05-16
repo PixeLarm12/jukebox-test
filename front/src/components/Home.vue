@@ -4,11 +4,11 @@
 
         <ul>
             <li>
-                <router-link to="/tasks/create">Create Task</router-link>
+                <router-link :to="{name: 'taskCreate'}">Create Task</router-link>
             </li>
 
             <li>
-                <router-link to="/tasks">See all Tasks</router-link>
+                <router-link :to="{name: 'taskList'}">See all Tasks</router-link>
             </li>
         </ul>
     </div> 

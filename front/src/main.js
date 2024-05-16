@@ -7,10 +7,10 @@ import ListTasks from './components/ListTasks.vue'
 import Home from './components/Home.vue'
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/tasks/create', component: CreateOrEditTask },
-    { path: '/tasks/edit/:id', component: CreateOrEditTask },
-    { path: '/tasks', component: ListTasks },
+    { path: '/', name: "home", component: Home },
+    { path: '/tasks/create', name: "taskCreate", component: CreateOrEditTask },
+    { path: '/tasks/edit/:id', name: "taskEdit", component: CreateOrEditTask },
+    { path: '/tasks', name: "taskList", component: ListTasks },
 ]
 
 const router = createRouter({
