@@ -2,9 +2,9 @@ import { createApp } from 'vue'
 import { createWebHistory, createRouter } from 'vue-router'
 
 import App from './App.vue'
-import CreateOrEditTask from './components/CreateOrEditTask.vue'
-import ListTasks from './components/ListTasks.vue'
-import Home from './components/Home.vue'
+import CreateOrEditTask from './pages/CreateOrEditTask.vue'
+import ListTasks from './pages/ListTasks.vue'
+import Home from './pages/Home.vue'
 
 const routes = [
     { path: '/', name: "home", component: Home },
