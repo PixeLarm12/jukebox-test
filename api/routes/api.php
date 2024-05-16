@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware("auth")->group(function () {
     Route::apiResource("/tasks", TaskController::class);
+    Route::get("/tasks/{task}", TaskController::class . "@show");
 })->name("task.");
 
 Route::post("/login", AuthController::class . "@login")->name("auth.login");

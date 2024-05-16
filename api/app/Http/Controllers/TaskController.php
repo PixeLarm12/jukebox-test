@@ -21,6 +21,11 @@ class TaskController extends Controller
         return response()->json($this->taskRepository->list());
     }
 
+    public function show(Task $task): JsonResponse
+    {
+        return response()->json($this->taskRepository->getTask($task));
+    }
+
     public function store(TaskRequest $request): JsonResponse
     {
         return response()->json($this->taskRepository->save($request));

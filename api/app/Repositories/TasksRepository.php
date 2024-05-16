@@ -13,6 +13,11 @@ class TasksRepository
         return Task::getAllTasks();
     }
 
+    public function getTask(Task $model): Task
+    {
+        return Task::find($model->id);
+    }
+
     public function save(TaskRequest $request): Task
     {
         if($request->validated()) {
