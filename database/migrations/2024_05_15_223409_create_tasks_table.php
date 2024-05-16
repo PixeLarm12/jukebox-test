@@ -9,10 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            $table->increments("id");
             $table->string("title", 50);
             $table->text("description", 200);
-            $table->bigInteger("user_id");
+            $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references("id")->on("users");
             $table->timestamps();
         });
