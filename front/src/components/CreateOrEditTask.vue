@@ -2,7 +2,7 @@
     <div>
         <h1>{{ title }} Tasks</h1>
 
-        <form>
+        <form @submit.prevent="submit()">
           <div>
             <label for="title">Title *</label>
             <input type="text" id="title" name="title" v-model="task.title" placeholder="Enter with Task Title">
@@ -17,7 +17,7 @@
             <span v-for="(index, error) in errors" :key="index">{{ error }}</span>
           </div>
 
-          <button @click="submit()">{{ title }} Task</button>
+          <button type="submit">{{ title }} Task</button>
         </form>
     </div>
 </template>
@@ -68,8 +68,12 @@ export default {
         "description": this.task.description,
         "user_id": this.task.user_id,
       })
-      .then(() => {
-        this.$router.push('/tasks')
+      .then(response => {
+        if(response) {
+          this.$router.push({ name: "taskList" })
+        }
+
+        this.error.push("An error occurred trying to UPDATE Task. Please reload the page!");
       })
       .catch(error => console.log(error));
     },
@@ -80,8 +84,12 @@ export default {
         "description": this.task.description,
         "user_id": this.task.user_id,
       })
-      .then(() => {
-          this.$router.push('/tasks')
+      .then(response => {
+        if(response) {
+          this.$router.push({ name: "taskList" })
+        }
+
+        this.error.push("An error occurred trying to SAVE new Task. Please reload the page!");
       })
       .catch(error => console.log(error));
     },
