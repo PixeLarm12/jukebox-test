@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Requests\AuthRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AuthRepository
@@ -18,5 +19,10 @@ class AuthRepository
     public function logout()
     {
         Auth::logout();
+    }
+
+    public function getUser()
+    {
+        return Auth::user();
     }
 }

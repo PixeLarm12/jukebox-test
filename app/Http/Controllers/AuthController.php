@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
 use App\Repositories\AuthRepository;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
@@ -14,13 +15,18 @@ class AuthController extends Controller
         $this->authRepository = $authRepository;
     }
 
-    public function login(AuthRequest $request)
+    public function login(AuthRequest $request): JsonResponse
     {
         return response()->json($this->authRepository->auth($request));
     }
 
-    public function logout()
+    public function logout(): JsonResponse
     {
         return response()->json($this->authRepository->logout());
+    }
+
+    public function getUser(): JsonResponse
+    {
+        return response()->json($this->authRepository->getUser());
     }
 }

@@ -21,3 +21,4 @@ Route::middleware("auth")->group(function () {
 
 Route::post("/login", AuthController::class . "@login")->name("auth.login");
 Route::get("/logout", AuthController::class . "@logout")->name("auth.logout");
+Route::get("/get-user", AuthController::class . "@getUser")->name("auth.getUser");
