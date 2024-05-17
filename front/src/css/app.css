@@ -5,5 +5,13 @@
 @tailwind utilities;
 
 .nav-item {
-    @apply hover:underline cursor-pointer font-semibold uppercase text-default-gray;
+    @apply hover:underline cursor-pointer text-lg font-semibold uppercase text-white;
+}
+
+.btn-primary {
+    @apply w-44 h-14 bg-default-blue text-lg uppercase font-bold text-white rounded-md hover:bg-blue-600 flex justify-center items-center;
+}
+
+.default-input {
+    @apply w-full border border-gray-400 rounded-md h-10 pl-3 bg-gray-50 focus:bg-gray-200 hover:bg-gray-200;
 }
