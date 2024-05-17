@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createWebHistory, createRouter } from 'vue-router'
 
 import App from './App.vue'
+import './css/build.css';
 import CreateOrEditTask from './pages/CreateOrEditTask.vue'
 import ListTasks from './pages/ListTasks.vue'
 import Home from './pages/Home.vue'
