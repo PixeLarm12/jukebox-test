@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-item {
+    @apply hover:underline cursor-pointer text-lg font-semibold uppercase text-white;
+}
+
+.btn-primary {
+    @apply w-44 h-14 bg-default-blue text-lg uppercase font-bold text-white rounded-md hover:bg-blue-600 flex justify-center items-center;
+}
+
+.input-field {
+    @apply w-full border border-gray-400 rounded-md h-10 pl-3 bg-gray-50 focus:bg-gray-200 hover:bg-gray-200;
+}
+
+.input-label {
+    @apply text-lg uppercase text-default-gray font-bold;
+}

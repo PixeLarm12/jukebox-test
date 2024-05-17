@@ -31,7 +31,7 @@ class AuthRepository
         auth()->logout();
     }
 
-    public function getUser()
+    public function getUser(): User
     {
         return auth()->user();
     }
