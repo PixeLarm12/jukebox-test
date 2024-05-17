@@ -5,13 +5,13 @@
                 <h1 class="col-span-12 text-default-gray font-bold text-5xl pb-12">Login</h1>
                 
                 <div class="col-span-12 w-5/12 flex flex-col justify-start items-start text-left">
-                    <label for="email" class="text-lg uppercase text-default-gray font-bold">Email <span class="font-bold text-red-500 text-lg">*</span></label>
-                    <input type="email" id="email" name="email" v-model="email" placeholder="Enter with your email" class="default-input">
+                    <label for="email" class="input-label">Email <span class="font-bold text-red-500 text-lg">*</span></label>
+                    <input type="email" id="email" name="email" v-model="email" placeholder="Enter with your email" class="input-field">
                 </div>
 
                 <div class="col-span-12 w-5/12 flex flex-col justify-start items-start text-left">
-                    <label for="password" class="text-lg uppercase text-default-gray font-bold">Password <span class="font-bold text-red-500 text-lg">*</span></label>
-                    <input type="password" id="password" name="password" v-model="password" placeholder="Enter with your password" class="default-input">
+                    <label for="password" class="input-label">Password <span class="font-bold text-red-500 text-lg">*</span></label>
+                    <input type="password" id="password" name="password" v-model="password" placeholder="Enter with your password" class="input-field">
                 </div>
                 
                 <div v-show="errors.length > 0" class="col-span-12 flex flex-col justify-start items-start text-left">

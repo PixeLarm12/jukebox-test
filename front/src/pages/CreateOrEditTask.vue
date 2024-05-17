@@ -1,32 +1,39 @@
 <template>
-    <div>
-        <h1>{{ title }} Tasks</h1>
+    <page-template>
+        <form @submit.prevent="submit()" class="w-full min-h-[100vh] flex flex-col justify-center items-center">
+          <div class="w-4/12 min-h-[50vh] grid grid-cols-12 gap-8 place-content-center place-items-center bg-blue-100 rounded-lg">
+            <h1 class="col-span-12 text-default-gray font-bold text-5xl pb-12">{{ title }} Tasks</h1>
 
-        <form @submit.prevent="submit()">
-          <div>
-            <label for="title">Title *</label>
-            <input type="text" id="title" name="title" v-model="task.title" placeholder="Enter with Task Title">
-          </div>
-          
-          <div>
-            <label for="description">Description *</label>
-            <textarea id="description" name="description" v-model="task.description" placeholder="Enter with Task Description" cols="30" rows="10"></textarea>
-          </div>
+            <div class="col-span-12 w-5/12 flex flex-col justify-start items-start text-left">
+              <label for="title" class="input-label">Title *</label>
+              <input type="text" id="title" name="title" v-model="task.title" placeholder="Enter with Task Title" class="input-field">
+            </div>
+            
+            <div class="col-span-12 w-5/12 flex flex-col justify-start items-start text-left">
+              <label for="description" class="input-label">Description *</label>
+              <textarea id="description" name="description" v-model="task.description" placeholder="Enter with Task Description" class="input-field resize-none" cols="30" rows="10"></textarea>
+            </div>
 
-          <div v-show="errors.length > 0">
-            <span v-for="(index, error) in errors" :key="index">{{ error }}</span>
-          </div>
+            <div v-show="errors.length > 0" class="col-span-12 flex flex-col justify-start items-start text-left">
+                <span v-for="(error, index) in errors" :key="index" class="text-red-500 font-semibold">{{ error }}</span>
+            </div>
 
-          <button type="submit">{{ title }} Task</button>
+            <button type="submit" class="col-span-12 flex justify-start items-start text-left btn-primary">{{ title }} Task</button>
+          </div>
         </form>
-    </div>
+    </page-template>
 </template>
 
 <script>
 import axios from 'axios';
+import PageTemplate from '../components/utils/PageTemplate.vue';
 
 export default {
   name: "CreateOrEditTasks",
+  
+  components: { 
+    PageTemplate 
+  },
   
   beforeMount() {
     if(! localStorage.getItem('jwt_token')) {
@@ -104,7 +111,8 @@ export default {
 
     validation() {
       let validator = 0;
-
+      this.errors = [];
+      
       if(this.task.title === "" || !(this.task.title.length >= 3 && this.task.title.length <= 50)) {
         this.errors.push("The TITLE field are required and must be at least 3 characters and max of 50.");
         validator++;
