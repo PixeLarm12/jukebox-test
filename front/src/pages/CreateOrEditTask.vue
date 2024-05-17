@@ -29,6 +29,10 @@ export default {
   name: "CreateOrEditTasks",
   
   beforeMount() {
+    if(! localStorage.getItem('jwt_token')) {
+        this.$router.push({ name: 'login' });
+    }
+
     this.title = 'Create';
 
     if(this.$route.params.id) {
@@ -42,6 +46,10 @@ export default {
     return {
       title: "",
       errors: [],
+      headers: {
+          "Authorization": 'Bearer ' + localStorage.getItem('jwt_token'),
+          'Content-Type': "multipart/form-data;"
+      },
       task: {
         user_id: 1,
         title: '',
@@ -52,7 +60,7 @@ export default {
 
   methods: {
     getTask() {
-      axios.get(`http://localhost/api/tasks/${this.$route.params.id}`)
+      axios.get(`http://localhost/api/tasks/${this.$route.params.id}`, { headers: {"Authorization": 'Bearer ' + localStorage.getItem('jwt_token')} })
       .then((response) => {
           this.task.id = response.data.id;
           this.task.title = response.data.title;
@@ -67,7 +75,7 @@ export default {
         "title": this.task.title,
         "description": this.task.description,
         "user_id": this.task.user_id,
-      })
+      }, { headers: this.headers })
       .then(response => {
         if(response) {
           this.$router.push({ name: "taskList" })
@@ -83,7 +91,7 @@ export default {
         "title": this.task.title,
         "description": this.task.description,
         "user_id": this.task.user_id,
-      })
+      }, { headers: this.headers })
       .then(response => {
         if(response) {
           this.$router.push({ name: "taskList" })

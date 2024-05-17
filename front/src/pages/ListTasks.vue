@@ -34,23 +34,30 @@ export default {
     name: "ListTasks",
 
     beforeMount() {
-        axios.get('http://localhost/api/tasks')
+        if(! localStorage.getItem('jwt_token')) {
+            this.$router.push({ name: 'login' });
+        }
+
+        axios.get('http://localhost/api/tasks', { headers: this.headers })
             .then(response => this.tasks = response.data)
             .catch(error => console.log(`Error: ${error}`));
     },
 
     data() {
         return {
-            tasks: []
+            tasks: [],
+            headers: {
+                "Authorization": 'Bearer ' + localStorage.getItem('jwt_token'),
+            },
         }
     },
 
     methods: {
         remove(taskId) {
-            axios.delete(`http://localhost/api/tasks/${taskId}`)
+            axios.delete(`http://localhost/api/tasks/${taskId}`, { headers: this.headers })
                 .then((response) => {
                     if(response) {
-                        this.$router.push('/tasks')
+                        this.$router.go(this.$router.currentRoute);
                     }
                 })
                 .catch(error => console.log(`Error: ${error}`));
