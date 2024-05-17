@@ -1,6 +1,6 @@
 <template>
     <page-template>
-        <div>
+        <div class="">
             <h1>Welcome Home!</h1>
 
             <ul>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import PageTemplate from '../components/PageTemplate.vue'
+import PageTemplate from '../components/utils/PageTemplate.vue'
 
 export default {
     name: "Home",
