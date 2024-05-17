@@ -43,6 +43,8 @@ export default {
                 })
                 .then(response => {
                     if(response) {
+                        localStorage.setItem('jwt_token', response.data.access_token);
+                        
                         this.$router.push({ name: "taskList" })
                     }
 

@@ -8,21 +8,31 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthRepository
 {
-    public function auth(AuthRequest $request): bool
+    public function auth(AuthRequest $request): array
     {
         if($request->validated())
         {
-            return Auth::attempt($request->getData(), true);
+            $token = Auth::attempt($request->getData());
+
+            if(!$token) {
+                return ["error" => "Unauthorized"];
+            }
+
+            return [
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => auth()->factory()->getTTL() * 60
+            ];
         }
     }
 
     public function logout()
     {
-        Auth::logout();
+        auth()->logout();
     }
 
     public function getUser()
     {
-        return Auth::user();
+        return auth()->user();
     }
 }
